@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/Diagrama/Diagrama.puml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/Diagrama/Diagrama.puml" />
+              <option name="updatedContent" value="@startuml&#10;package org.example {&#10;    abstract class FuncionarioComponent {&#10;        +String nome&#10;        +double salario&#10;        +void adicionar(FuncionarioComponent)&#10;        +void remover(FuncionarioComponent)&#10;        +List&lt;FuncionarioComponent&gt; getSubordinados()&#10;    }&#10;&#10;    class Funcionario extends FuncionarioComponent {&#10;        +Funcionario(String nome, double salario)&#10;        +void adicionar(FuncionarioComponent)&#10;        +void remover(FuncionarioComponent)&#10;        +List&lt;FuncionarioComponent&gt; getSubordinados()&#10;    }&#10;&#10;    class Gerente extends FuncionarioComponent {&#10;        +Gerente(String nome, double salario)&#10;        +void adicionar(FuncionarioComponent)&#10;        +void remover(FuncionarioComponent)&#10;        +List&lt;FuncionarioComponent&gt; getSubordinados()&#10;        -List&lt;FuncionarioComponent&gt; subordinados&#10;    }&#10;&#10;    FuncionarioComponent &lt;|-- Funcionario&#10;    FuncionarioComponent &lt;|-- Gerente&#10;    Gerente &quot;1&quot; o-- &quot;*&quot; FuncionarioComponent : subordinados&#10;}&#10;@enduml&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/org/example/Main.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/main/java/org/example/Main.java" />
+              <option name="updatedContent" value="package org.example;&#10;&#10;public class Main {&#10;    public static void main(String[] args) {&#10;        FuncionarioComponent dev1 = new Funcionario(&quot;João&quot;, 3000);&#10;        FuncionarioComponent dev2 = new Funcionario(&quot;Maria&quot;, 3200);&#10;        FuncionarioComponent dev3 = new Funcionario(&quot;Carlos&quot;, 3100);&#10;&#10;        Gerente gerenteTI = new Gerente(&quot;Ana&quot;, 7000);&#10;        gerenteTI.adicionar(dev1);&#10;        gerenteTI.adicionar(dev2);&#10;&#10;        Gerente gerenteGeral = new Gerente(&quot;Paulo&quot;, 12000);&#10;        gerenteGeral.adicionar(gerenteTI);&#10;        gerenteGeral.adicionar(dev3);&#10;&#10;        gerenteGeral.exibirInformacoes();&#10;    }&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/org/example/GerenteTest.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/test/java/org/example/GerenteTest.java" />
+              <option name="updatedContent" value="package org.example;&#10;&#10;import org.junit.jupiter.api.Test;&#10;import java.util.List;&#10;&#10;import static org.junit.jupiter.api.Assertions.*;&#10;&#10;class GerenteTest {&#10;    @Test&#10;    void testGerenteComSubordinados() {&#10;        // Cria funcionários&#10;        FuncionarioComponent funcionario1 = new Funcionario(&quot;João&quot;, 2000);&#10;        FuncionarioComponent funcionario2 = new Funcionario(&quot;Maria&quot;, 2500);&#10;&#10;        // Cria gerente intermediário&#10;        FuncionarioComponent gerenteIntermediario = new Gerente(&quot;Carlos&quot;, 4000);&#10;        gerenteIntermediario.adicionar(funcionario1);&#10;        gerenteIntermediario.adicionar(funcionario2);&#10;&#10;        // Cria gerente principal&#10;        FuncionarioComponent gerentePrincipal = new Gerente(&quot;Ana&quot;, 6000);&#10;        gerentePrincipal.adicionar(gerenteIntermediario);&#10;        gerentePrincipal.adicionar(new Funcionario(&quot;Pedro&quot;, 2200));&#10;&#10;        // Testa se os subordinados foram adicionados corretamente&#10;        List&lt;FuncionarioComponent&gt; subGerentePrincipal = gerentePrincipal.getSubordinados();&#10;        assertEquals(2, subGerentePrincipal.size());&#10;        assertTrue(subGerentePrincipal.contains(gerenteIntermediario));&#10;&#10;        List&lt;FuncionarioComponent&gt; subGerenteIntermediario = gerenteIntermediario.getSubordinados();&#10;        assertEquals(2, subGerenteIntermediario.size());&#10;        assertTrue(subGerenteIntermediario.contains(funcionario1));&#10;        assertTrue(subGerenteIntermediario.contains(funcionario2));&#10;    }&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

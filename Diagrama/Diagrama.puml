@@ -1,0 +1,27 @@
+@startuml Empresa {
+    abstract class FuncionarioComponent {
+        +String nome
+        +double salario
+        +void adicionar(FuncionarioComponent)
+        +void remover(FuncionarioComponent)
+        +List<FuncionarioComponent> getSubordinados()
+    }
+
+    class Funcionario extends FuncionarioComponent {
+        +Funcionario(String nome, double salario)
+        +void adicionar(FuncionarioComponent)
+        +void remover(FuncionarioComponent)
+        +List<FuncionarioComponent> getSubordinados()
+    }
+
+    class Gerente extends FuncionarioComponent {
+        +Gerente(String nome, double salario)
+        +void adicionar(FuncionarioComponent)
+        +void remover(FuncionarioComponent)
+        +List<FuncionarioComponent> getSubordinados()
+        -List<FuncionarioComponent> subordinados
+    }
+
+}
+@enduml
+
